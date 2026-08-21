@@ -1,0 +1,11 @@
+{
+  "login": {
+    "emailInput": "[data-testid='email']",
+    "passwordInput": "[data-testid='senha']",
+    "submitButton": "[data-testid='entrar']"
+  },
+  "home": {
+    "homeLink": "[data-testid='home']",
+    "logoutButton": "[data-testid='logout']"
+  }
+}
