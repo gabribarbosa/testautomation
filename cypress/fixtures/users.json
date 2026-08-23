@@ -1,0 +1,10 @@
+{
+  "validUser": {
+    "email": "vefewo3906@kolsea.com",
+    "password": "senha123"
+  },
+  "invalidUser": {
+    "email": "usuario-invalido@teste.com",
+    "password": ""
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "register": {
+    "message": "Cadastro realizado com sucesso"
+  },
+  "delete": {
+    "message": "Registro excluído com sucesso"
+  }
+}

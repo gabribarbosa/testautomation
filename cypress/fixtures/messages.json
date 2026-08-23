@@ -1,0 +1,17 @@
+{
+  "login": {
+    "invalidCredentials": "Email e/ou senha inválidos",
+    "emptyEmail": "Email é obrigatório",
+    "emptyPassword": "Password é obrigatório"
+  },
+    "register": {
+    "registerSuccess": "Cadastro realizado com sucesso"
+  },
+  "search": {
+    "notFound": "Usuário não encontrado"
+  },
+  "delete": {
+    "deleteSuccess": "Registro excluído com sucesso"
+  }
+  
+}
