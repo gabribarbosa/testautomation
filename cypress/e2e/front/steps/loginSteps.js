@@ -15,8 +15,7 @@ Given('que estou na página de login', () => {
   LoginPage.getSubmitButton().should('be.visible')
 })
 
-Given('que estou autenticado na plataforma', function () {
-  const { validUser } = this.users
+Given('que estou autenticado na plataforma', () => {
   cy.loginAsValidUser()
   HomePage.isLoaded()
 })
