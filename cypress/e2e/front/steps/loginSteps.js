@@ -6,6 +6,29 @@ import HomePage from '../../../support/pages/HomePage'
 before(() => {
   cy.fixture('users').as('users')
   cy.fixture('messages').as('messages')
+  
+  // Cadastra o validUser via API antes dos testes para garantir que a conta existe
+  cy.fixture('users').then(({ validUser }) => {
+    cy.request({
+      method: 'POST',
+      url: 'https://serverest.dev/usuarios',
+      body: {
+        nome: 'Usuario Teste Frontend',
+        email: validUser.email,
+        password: validUser.password,
+        administrador: 'true'
+      },
+      failOnStatusCode: false
+    }).then((response) => {
+      if (response.status === 201) {
+        cy.log('✅ Usuário cadastrado com sucesso para os testes de frontend')
+      } else if (response.body.message === 'Este email já está sendo usado') {
+        cy.log('⚠️ Usuário já existe, continuando com os testes')
+      } else {
+        cy.log('⚠️ Resposta inesperada no cadastro:', response.status, response.body)
+      }
+    })
+  })
 })
 
 // ─── Contexto ────────────────────────────────────────────────────────────────
