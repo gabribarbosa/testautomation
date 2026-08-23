@@ -54,29 +54,89 @@ testautomation/
 - ✅ **Fixtures** — Seletores, mensagens e credenciais centralizados
 - ✅ **Cucumber Preprocessor** — Suporte completo a `.feature`
 
-## 🚀 Executar os Testes
+## 🚀 Running Tests
 
-### Todos os testes
+### Run All Tests
 ```bash
+npm test
+# or
 npx cypress run
 ```
 
-### Apenas Backend (API)
+### Run Tests and Generate Report
 ```bash
+npm run test:report
+```
+
+### Backend Tests Only (API)
+```bash
+npm run test:backend
+# or
 npx cypress run --spec "cypress/e2e/back/**/*.cy.js"
 ```
 
-### Apenas Frontend (UI)
+### Frontend Tests Only (UI)
 ```bash
+npm run test:frontend
+# or
 npx cypress run --spec "cypress/e2e/front/**/*.feature"
 ```
 
-### Modo Interativo
+### Interactive Mode
 ```bash
+npm run cy:open
+# or
 npx cypress open
 ```
 
-## 📦 Dependências
+## 📊 Test Reports
+
+This project uses **Cypress Mochawesome Reporter** to generate beautiful and detailed HTML reports.
+
+### Generate Report
+```bash
+npm run test:report
+```
+
+This command will:
+1. Clean previous reports, screenshots, and videos
+2. Run all tests with automatic screenshot capture on failures
+3. Generate a consolidated HTML report
+
+### Open Report
+```bash
+npm run report:open
+```
+
+Or manually open: `cypress/reports/pass_[datetime]-[name]-report.html`
+
+### Report Features
+- ✅ **Visual Dashboard** — Test suite overview with pass/fail statistics and charts
+- ✅ **Detailed Test Results** — Individual test execution details with duration
+- ✅ **Test Hierarchy** — Organized by describe/feature blocks with test names
+- ✅ **Failure Analysis** — Complete stack traces and error messages
+- ✅ **Embedded Screenshots** — Automatic screenshots on test failures (inline in report)
+- ✅ **Test Timing** — Execution time for each test and suite
+- ✅ **Status Badges** — Quick visual indicators for pass/fail status
+- ✅ **Responsive Design** — Works perfectly on all screen sizes
+
+### Report Location
+```
+cypress/reports/
+├── pass_[datetime]-[name]-report.html    # Main consolidated HTML report
+└── .jsons/                                # Individual JSON reports (merged automatically)
+    ├── pass_[datetime]-usuarios-report.json
+    ├── pass_[datetime]-login-report.json
+    └── pass_[datetime]-logout-report.json
+```
+
+### Screenshots
+Screenshots are automatically captured on test failures and embedded directly in the HTML report. No need to manually open screenshot files!
+
+**Note**: Reports, screenshots, and videos are automatically excluded from Git via `.gitignore`
+
+
+## 📦 Dependencies
 
 ```json
 {
@@ -85,49 +145,61 @@ npx cypress open
   "@faker-js/faker": "^10.6.0",
   "ajv": "^8.20.0",
   "ajv-formats": "^3.0.1",
-  "cypress": "^15.21.0"
+  "cypress": "^15.21.0",
+  "cypress-mochawesome-reporter": "^5.0.0",
+  "mochawesome": "^8.0.1",
+  "mochawesome-merge": "^5.1.1",
+  "mochawesome-report-generator": "^6.3.2"
 }
 ```
 
-## 📊 Resultados Atuais
+## 📊 Current Results
 
 ### Backend API
-✅ **5/5 testes passando** (100%)
-- Cadastro de usuário
-- Busca de usuário válido
-- Busca de usuário inválido (validação de erro)
-- Exclusão de usuário
-- Confirmação de exclusão
+✅ **5/5 tests passing** (100%)
+- User registration
+- Fetch user by valid ID
+- Fetch user by invalid ID (error validation)
+- User deletion
+- Deletion confirmation
 
 ### Frontend UI
-⚠️ **8/10 testes passando** (80%)
-- Login com credenciais inválidas ✅
-- Login sem email ✅
-- Login sem senha ✅
-- Login com credenciais válidas ⚠️
-- Logout ⚠️
+✅ **5/5 tests passing** (100%)
+- Login with valid credentials ✅
+- Login with invalid credentials ✅
+- Login without email ✅
+- Login without password ✅
+- Successful logout ✅
 
-## 🔧 Instalação
+**Total: 10/10 tests passing** 🎉
+
+## 🔧 Installation
 
 ```bash
-# Instalar dependências
+# Install dependencies
 npm install
 
-# Executar testes
-npx cypress run
+# Run tests
+npm test
+
+# Run tests with report
+npm run test:report
 ```
 
-## 📝 Observações
+## 📝 Notes
 
-- **Backend**: Usa dados dinâmicos gerados com Faker a cada execução
-- **Frontend**: Usa BDD/Gherkin para cenários legíveis por não-técnicos
-- **Zero Hardcode**: Tudo está em fixtures ou é gerado dinamicamente
-- **Validação Rigorosa**: Todos os schemas são validados com AJV
-- **Arquitetura Escalável**: Fácil adicionar novos testes e cenários
+- **Backend**: Uses dynamic data generated with Faker on each execution
+- **Frontend**: Uses BDD/Gherkin for readable scenarios by non-technical stakeholders
+- **Zero Hardcode**: Everything is in fixtures or dynamically generated
+- **Strict Validation**: All schemas are validated with AJV
+- **Scalable Architecture**: Easy to add new tests and scenarios
+- **Automated Reports**: Mochawesome generates beautiful HTML reports
+- **Auto-registration**: Frontend tests automatically register users via API before execution
 
-## 📚 Documentação Adicional
+## 📚 Additional Documentation
 
-- [Testes de API Backend](cypress/e2e/back/README.md)
-- [Cypress Documentation](https://docs.cypress.io/)
+- [Backend API Tests Documentation](cypress/e2e/back/README.md)
+- [Cypress Official Documentation](https://docs.cypress.io/)
 - [Faker.js Documentation](https://fakerjs.dev/)
-- [AJV Documentation](https://ajv.js.org/)
+- [AJV JSON Schema Validator](https://ajv.js.org/)
+- [Cypress Mochawesome Reporter](https://github.com/LironEr/cypress-mochawesome-reporter)
