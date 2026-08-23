@@ -2,7 +2,7 @@ import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 
 /**
- * Realiza login via UI usando as credenciais fornecidas
+ * Performs login via UI using provided credentials
  * @param {string} email
  * @param {string} password
  */
@@ -12,7 +12,7 @@ Cypress.Commands.add('login', (email, password) => {
 })
 
 /**
- * Realiza login com o usuário válido definido em fixtures/users.json
+ * Performs login with the valid user defined in fixtures/users.json
  */
 Cypress.Commands.add('loginAsValidUser', () => {
   cy.fixture('users').then(({ validUser }) => {
@@ -21,7 +21,7 @@ Cypress.Commands.add('loginAsValidUser', () => {
 })
 
 /**
- * Realiza logout a partir da tela Home
+ * Performs logout from Home screen
  */
 Cypress.Commands.add('logout', () => {
   HomePage.logout()

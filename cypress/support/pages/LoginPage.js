@@ -1,8 +1,8 @@
 import selectors from '../../fixtures/selectors.json'
 
 /**
- * Page Object para a tela de Login
- * Encapsula todos os seletores e ações relacionadas à autenticação
+ * Page Object for Login screen
+ * Encapsulates all selectors and actions related to authentication
  */
 class LoginPage {
   visit() {
@@ -22,7 +22,7 @@ class LoginPage {
   }
 
   /**
-   * Realiza o fluxo completo de login
+   * Performs complete login flow
    * @param {string} email
    * @param {string} password
    */

@@ -2,12 +2,12 @@ import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor'
 import LoginPage from '../../../support/pages/LoginPage'
 import HomePage from '../../../support/pages/HomePage'
 
-// Fixtures carregadas via alias para evitar hardcode
+// Load fixtures via alias to avoid hardcoding
 before(() => {
   cy.fixture('users').as('users')
   cy.fixture('messages').as('messages')
   
-  // Cadastra o validUser via API antes dos testes para garantir que a conta existe
+  // Register validUser via API before tests to ensure the account exists
   cy.fixture('users').then(({ validUser }) => {
     cy.request({
       method: 'POST',
@@ -21,88 +21,88 @@ before(() => {
       failOnStatusCode: false
     }).then((response) => {
       if (response.status === 201) {
-        cy.log('✅ Usuário cadastrado com sucesso para os testes de frontend')
+        cy.log('✅ User successfully registered for frontend tests')
       } else if (response.body.message === 'Este email já está sendo usado') {
-        cy.log('⚠️ Usuário já existe, continuando com os testes')
+        cy.log('⚠️ User already exists, continuing with tests')
       } else {
-        cy.log('⚠️ Resposta inesperada no cadastro:', response.status, response.body)
+        cy.log('⚠️ Unexpected registration response:', response.status, response.body)
       }
     })
   })
 })
 
-// ─── Contexto ────────────────────────────────────────────────────────────────
+// ─── Background ──────────────────────────────────────────────────────────────
 
-Given('que estou na página de login', () => {
+Given('I am on the login page', () => {
   LoginPage.visit()
   LoginPage.getSubmitButton().should('be.visible')
 })
 
-Given('que estou autenticado na plataforma', () => {
+Given('I am authenticated on the platform', () => {
   cy.loginAsValidUser()
   HomePage.isLoaded()
 })
 
-// ─── Ações ────────────────────────────────────────────────────────────────────
+// ─── Actions ─────────────────────────────────────────────────────────────────
 
-When('preencho o email com o usuário válido', function () {
+When('I fill in the email with the valid user', function () {
   LoginPage.fillEmail(this.users.validUser.email)
 })
 
-When('preencho a senha com o usuário válido', function () {
+When('I fill in the password with the valid user', function () {
   LoginPage.fillPassword(this.users.validUser.password)
 })
 
-When('preencho o email com {string}', (email) => {
+When('I fill in the email with {string}', (email) => {
   LoginPage.fillEmail(email)
 })
 
-When('preencho a senha com {string}', (password) => {
+When('I fill in the password with {string}', (password) => {
   LoginPage.fillPassword(password)
 })
 
-When('deixo o campo de email em branco', () => {
+When('I leave the email field blank', () => {
   LoginPage.getEmailInput().clear()
 })
 
-When('deixo o campo de senha em branco', () => {
+When('I leave the password field blank', () => {
   LoginPage.getPasswordInput().clear()
 })
 
-When('clico no botão Entrar', () => {
+When('I click the Login button', () => {
   LoginPage.submit()
 })
 
-When('clico no botão de logout', () => {
+When('I click the logout button', () => {
   HomePage.logout()
 })
 
-// ─── Assertivas ───────────────────────────────────────────────────────────────
+// ─── Assertions ──────────────────────────────────────────────────────────────
 
-Then('devo ser redirecionado para a home', () => {
+Then('I should be redirected to the home page', () => {
   HomePage.isLoaded()
 })
 
-Then('o botão de logout deve estar visível', () => {
+Then('the logout button should be visible', () => {
   HomePage.getLogoutButton().should('be.visible')
 })
 
-Then('devo ver a mensagem de credenciais inválidas', function () {
+Then('I should see the invalid credentials message', function () {
   cy.contains(this.messages.login.invalidCredentials).should('be.visible')
 })
 
-Then('devo ver a mensagem de email obrigatório', function () {
+Then('I should see the required email message', function () {
   cy.contains(this.messages.login.emptyEmail).should('be.visible')
 })
 
-Then('devo ver a mensagem de senha obrigatória', function () {
+Then('I should see the required password message', function () {
   cy.contains(this.messages.login.emptyPassword).should('be.visible')
 })
 
-Then('devo ser redirecionado para a página de login', () => {
+Then('I should be redirected to the login page', () => {
   LoginPage.getSubmitButton().should('be.visible')
 })
 
-Then('o botão de logout não deve estar visível', () => {
+Then('the logout button should not be visible', () => {
   cy.get("[data-testid='logout']").should('not.exist')
 })

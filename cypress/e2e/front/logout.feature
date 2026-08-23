@@ -1,14 +1,12 @@
-# language: pt
+Feature: Logout
+  As an authenticated user
+  I want to log out of the platform
+  To safely end my session
 
-Funcionalidade: Logout
-  Como um usuário autenticado
-  Quero realizar o logout da plataforma
-  Para encerrar minha sessão com segurança
+  Background:
+    Given I am authenticated on the platform
 
-  Contexto:
-    Dado que estou autenticado na plataforma
-
-  Cenário: Logout com sucesso
-    Quando clico no botão de logout
-    Então devo ser redirecionado para a página de login
-    E o botão de logout não deve estar visível
+  Scenario: Successful logout
+    When I click the logout button
+    Then I should be redirected to the login page
+    And the logout button should not be visible

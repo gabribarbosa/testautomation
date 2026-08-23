@@ -2,7 +2,7 @@ import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 
 /**
- * Validador de schemas JSON usando AJV
+ * JSON schema validator using AJV
  */
 class SchemaValidator {
   constructor() {
@@ -11,10 +11,10 @@ class SchemaValidator {
   }
 
   /**
-   * Valida um objeto contra um schema
-   * @param {Object} data - Dados a serem validados
-   * @param {Object} schema - Schema JSON para validação
-   * @returns {boolean} - true se válido, lança erro se inválido
+   * Validates an object against a schema
+   * @param {Object} data - Data to be validated
+   * @param {Object} schema - JSON schema for validation
+   * @returns {boolean} - true if valid, throws error if invalid
    */
   validate(data, schema) {
     const validate = this.ajv.compile(schema)

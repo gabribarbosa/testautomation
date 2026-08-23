@@ -1,8 +1,8 @@
 import selectors from '../../fixtures/selectors.json'
 
 /**
- * Page Object para a tela Home (pós-login)
- * Encapsula seletores e ações disponíveis após autenticação
+ * Page Object for Home screen (post-login)
+ * Encapsulates selectors and actions available after authentication
  */
 class HomePage {
   getHomeLink() {

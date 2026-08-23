@@ -1,6 +1,6 @@
 /**
- * Service Object para gerenciar operações da API de Usuários
- * Encapsula todas as requisições HTTP relacionadas a usuários
+ * Service Object to manage User API operations
+ * Encapsulates all HTTP requests related to users
  */
 class UserService {
   constructor() {
@@ -9,8 +9,8 @@ class UserService {
   }
 
   /**
-   * Registra um novo usuário
-   * @param {Object} userData - Dados do usuário (nome, email, password, administrador)
+   * Registers a new user
+   * @param {Object} userData - User data (nome, email, password, administrador)
    * @returns {Cypress.Chainable}
    */
   register(userData) {
@@ -23,8 +23,8 @@ class UserService {
   }
 
   /**
-   * Busca um usuário por ID
-   * @param {string} userId - ID do usuário
+   * Fetches a user by ID
+   * @param {string} userId - User ID
    * @returns {Cypress.Chainable}
    */
   getById(userId) {
@@ -36,8 +36,8 @@ class UserService {
   }
 
   /**
-   * Remove um usuário por ID
-   * @param {string} userId - ID do usuário
+   * Deletes a user by ID
+   * @param {string} userId - User ID
    * @returns {Cypress.Chainable}
    */
   delete(userId) {

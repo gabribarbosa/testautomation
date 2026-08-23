@@ -1,34 +1,32 @@
-# language: pt
+Feature: Login
+  As a registered user
+  I want to log in to the platform
+  To access the available features
 
-Funcionalidade: Login
-  Como um usuário cadastrado
-  Quero realizar o login na plataforma
-  Para acessar as funcionalidades disponíveis
+  Background:
+    Given I am on the login page
 
-  Contexto:
-    Dado que estou na página de login
+  Scenario: Login with valid credentials
+    When I fill in the email with the valid user
+    And I fill in the password with the valid user
+    And I click the Login button
+    Then I should be redirected to the home page
+    And the logout button should be visible
 
-  Cenário: Login com credenciais válidas
-    Quando preencho o email com o usuário válido
-    E preencho a senha com o usuário válido
-    E clico no botão Entrar
-    Então devo ser redirecionado para a home
-    E o botão de logout deve estar visível
+  Scenario: Login with invalid credentials
+    When I fill in the email with "usuario-invalido@teste.com"
+    And I fill in the password with "senhaerrada"
+    And I click the Login button
+    Then I should see the invalid credentials message
 
-  Cenário: Login com credenciais inválidas
-    Quando preencho o email com "usuario-invalido@teste.com"
-    E preencho a senha com "senhaerrada"
-    E clico no botão Entrar
-    Então devo ver a mensagem de credenciais inválidas
+  Scenario: Login without filling in the email
+    When I leave the email field blank
+    And I fill in the password with the valid user
+    And I click the Login button
+    Then I should see the required email message
 
-  Cenário: Login sem preencher o email
-    Quando deixo o campo de email em branco
-    E preencho a senha com o usuário válido
-    E clico no botão Entrar
-    Então devo ver a mensagem de email obrigatório
-
-  Cenário: Login sem preencher a senha
-    Quando preencho o email com o usuário válido
-    E deixo o campo de senha em branco
-    E clico no botão Entrar
-    Então devo ver a mensagem de senha obrigatória
+  Scenario: Login without filling in the password
+    When I fill in the email with the valid user
+    And I leave the password field blank
+    And I click the Login button
+    Then I should see the required password message

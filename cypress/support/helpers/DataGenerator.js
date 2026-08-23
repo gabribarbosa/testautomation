@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker'
 
 /**
- * Gerador de dados dinâmicos para testes usando Faker
+ * Dynamic data generator for tests using Faker
  */
 class DataGenerator {
   /**
-   * Gera dados completos de um usuário
-   * @param {boolean} isAdmin - Se o usuário é administrador
-   * @returns {Object} Objeto com nome, email, password e administrador
+   * Generates complete user data
+   * @param {boolean} isAdmin - Whether the user is an admin
+   * @returns {Object} Object with nome, email, password, and administrador
    */
   generateUserData(isAdmin = true) {
     return {
@@ -19,7 +19,7 @@ class DataGenerator {
   }
 
   /**
-   * Gera apenas um email único
+   * Generates a unique email only
    * @returns {string}
    */
   generateEmail() {
@@ -27,7 +27,7 @@ class DataGenerator {
   }
 
   /**
-   * Gera apenas um nome completo
+   * Generates a full name only
    * @returns {string}
    */
   generateName() {
