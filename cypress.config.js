@@ -22,6 +22,21 @@ module.exports = defineConfig({
     reportFilename: "[status]_[datetime]-[name]-report",
     timestamp: "longDate"
   },
+
+  reporterOptions: {
+  reportDir: "cypress/reports",
+  overwrite: false,
+  html: true,
+  json: true,
+  charts: true,
+  reportPageTitle: "Test Automation Report - ServeRest",
+  embeddedScreenshots: true,
+  inlineAssets: true,
+  saveAllAttempts: false,
+  reportFilename: "[status]_[datetime]-[name]-report",
+  timestamp: "longDate",
+  code: false
+},
   
   e2e: {
     baseUrl: "https://front.serverest.dev",
